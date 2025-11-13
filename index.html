@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gửi Phượng 💛💛💛</title>
+    <style>
+      :root {
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        color: #31241b;
+        background: radial-gradient(circle at top, #fff3e0, #ffe0b2, #ffcc80);
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .card {
+        width: min(90vw, 640px);
+        padding: clamp(24px, 6vw, 40px);
+        border-radius: 28px;
+        background: rgba(255, 251, 243, 0.94);
+        box-shadow: 0 40px 80px rgba(137, 82, 20, 0.2);
+        display: flex;
+        flex-direction: column;
+        gap: clamp(16px, 3vw, 24px);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.6rem, 4vw, 2.2rem);
+        text-align: center;
+        color: #8d4f14;
+      }
+
+      p {
+        margin: 0;
+        text-align: center;
+        line-height: 1.6;
+      }
+
+      .clip {
+        width: 100%;
+        border-radius: 18px;
+        box-shadow: 0 22px 40px rgba(0, 0, 0, 0.18);
+        object-fit: cover;
+      }
+
+      .hint {
+        font-size: clamp(1rem, 2.4vw, 1.2rem);
+        color: rgba(141, 79, 20, 0.8);
+        letter-spacing: 0.04em;
+        text-align: center;
+        animation: blink 1.5s ease-in-out infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        60% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.2;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card" tabindex="0">
+      
+      <video
+        class="clip"
+        id="love-video"
+        src="video.mp4"
+        playsinline
+        controls
+      ></video>
+      <audio id="love-sound" src="sound.mp3" preload="auto"></audio>
+      <div class="hint">Nhấn Enter nhé 💛</div>
+    </div>
+
+    <script>
+      const container = document.querySelector(".card");
+      const audio = document.getElementById("love-sound");
+      const video = document.getElementById("love-video");
+
+      function playMoment() {
+        if (!audio) return;
+        audio.currentTime = 0;
+        audio.play().catch(() => {
+          /* Trình duyệt chặn autoplay, giữ im lặng */
+        });
+
+        if (video) {
+          video.pause();
+          video.currentTime = 0;
+          video.play().catch(() => {
+            /* Nếu trình duyệt chặn autoplay thì người dùng nhấn play thủ công */
+          });
+        }
+      }
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          playMoment();
+        }
+      });
+
+      container.addEventListener("click", () => container.focus());
+      container.focus();
+    </script>
+  </body>
+</html>
+
