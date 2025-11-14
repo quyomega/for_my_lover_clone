@@ -71,13 +71,13 @@
   </head>
   <body>
     <div class="card" tabindex="0">
-      
       <video
         class="clip"
         id="love-video"
         src="video.mp4"
         playsinline
-        controls
+        disablePictureInPicture
+        controlslist="nodownload noplaybackrate noremoteplayback"
       ></video>
       <audio id="love-sound" src="sound.mp3" preload="auto"></audio>
       <div class="hint">Nhấn Enter nhé 💛</div>
@@ -111,8 +111,8 @@
       });
 
       container.addEventListener("click", () => container.focus());
+      document.addEventListener("click", playMoment);
       container.focus();
     </script>
   </body>
 </html>
-
